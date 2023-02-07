@@ -1,20 +1,24 @@
-#include<stdio.h>
-int BC(int n, int k);
-
-int main()
-{
-        int n,k;
-        printf("Enter n and k : ");
-        scanf("%d%d",&n,&k);
-        printf("%\nBinomial coefficient\n",BC(n,k));
-        printf("%d\n",BC(n,k));
-
-        return 0;
-}
-
-int BC(int n, int k)
-{
-        if(k==0 || k==n)
-                return 1;
-        return BC(n-1,k-1) + BC(n-1,k);
+#include<stdio.h> 
+void main() {
+    int i, j, n, k, min, c[20][20]={0};
+    printf("\n Enter the value of n: ");     
+    scanf("%d", &n);     
+    printf("\n Enter the value of k: ");     
+    scanf("%d", &k);
+    if(n >= k) {         
+        for(i=0; i<=n; i++) {             
+            min = i<k? i:k;
+            for(j = 0; j <= min; j++) {
+                 if(j==0 || j == i) {
+                     c[i][j] = 1;
+                 } else {
+                     c[i][j] = c[i-1][j-1] + c[i-1][j];
+                 }
+             }
+         }
+         printf("%d\t",c[n][k]);
+         printf("\n");
+     } else {
+         printf("\n Invalid input \n Enter value n>=k \n");
+     }
 }
